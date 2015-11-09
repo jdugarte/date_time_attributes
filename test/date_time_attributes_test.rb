@@ -140,7 +140,7 @@ class DateTimeAttributesTest < ActiveSupport::TestCase
 
 
   class Dummy
-    extend DateTimeAttributes
+    extend DateTimeAttributes::ClassMethods
     attr_accessor :start_at, :ending
     date_time_attributes_for :start_at, :ending
   end

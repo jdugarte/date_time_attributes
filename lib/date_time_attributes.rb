@@ -30,13 +30,13 @@ module DateTimeAttributes
             return
           end
           new_date = Date.parse new_date if new_date.is_a? String
-          self.send assignment, (self.send(attribute) || Time.now).change(year: new_date.year, month: new_date.month, day: new_date.day)
+          self.send assignment, (self.send(attribute) || Time.now.utc).change(year: new_date.year, month: new_date.month, day: new_date.day)
         end
 
         define_method "#{attribute_name}_time=" do |new_time|
           return if blank_value? new_time
           new_time = Time.parse new_time if new_time.is_a? String
-          self.send assignment, (self.send(attribute) || Time.now).change(hour: new_time.hour, min: new_time.min, sec: new_time.sec)
+          self.send assignment, (self.send(attribute) || Time.now.utc).change(hour: new_time.hour, min: new_time.min, sec: new_time.sec)
         end
 
         private
